@@ -57,7 +57,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 ![Home Page](./output/Team-Profile-Generator.gif)
 
 ## Screenshots
-HTML file generated using the application
+HTML file generated using the application: [team.html](https://github.com/caseygirlyn/Team-Profile-Generator/blob/main/output/team.html) 
 
 ![Home Page](./output/Team-Profile-Generator.png)
 
