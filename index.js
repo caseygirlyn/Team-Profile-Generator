@@ -11,11 +11,11 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-// Gather information about the development team members, and render the HTML file.
+// Gather information about the development team members and render the HTML file.
 
 const teamMembers = [];
 
-// array of questions for user
+// Common questions for all employees with different roles.
 const employeeQuestions = (team) => {
     const questions = [
         {
@@ -40,12 +40,13 @@ const employeeQuestions = (team) => {
             name: "email",
             message: `What is the ${team}'s email?`,
             validate(input) {
-                const validateEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                const validateEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //regex to validate email
                 return validateEmail.test(input) ? true : 'Please enter a valid email address';
             },
         },
     ]
 
+    // Additional question for different employee role 
     switch (team) {
         case 'manager':
             questions.push({
@@ -84,6 +85,7 @@ const employeeQuestions = (team) => {
     return inquirer.prompt(questions);
 }
 
+// Prompt user to add more team member or finish building the team
 const addTeamMember = () => {
     return inquirer.prompt([
         {
@@ -98,8 +100,8 @@ const addTeamMember = () => {
 (async () => {
     try {
         const ansManager = await employeeQuestions('manager');
-        const manager = new Manager(ansManager.name, ansManager.id, ansManager.email, ansManager.officeNumber);
-        teamMembers.push(manager);
+        const manager = new Manager(ansManager.name, ansManager.id, ansManager.email, ansManager.officeNumber); // Create an object for the manager
+        teamMembers.push(manager); // Push information to teamMembers array
 
         let buildTeam = true;
 
@@ -108,13 +110,13 @@ const addTeamMember = () => {
             switch (response.newMember) {
                 case 'Engineer':
                     const ansEngineer = await employeeQuestions('engineer');
-                    const engineer = new Engineer(ansEngineer.name, ansEngineer.id, ansEngineer.email, ansEngineer.github);
-                    teamMembers.push(engineer);
+                    const engineer = new Engineer(ansEngineer.name, ansEngineer.id, ansEngineer.email, ansEngineer.github); // Create an object for an engineer
+                    teamMembers.push(engineer); // Push information to teamMembers array
                     break;
                 case 'Intern':
                     const ansIntern = await employeeQuestions('intern');
-                    const intern = new Intern(ansIntern.name, ansIntern.id, ansIntern.email, ansIntern.school);
-                    teamMembers.push(intern);
+                    const intern = new Intern(ansIntern.name, ansIntern.id, ansIntern.email, ansIntern.school); // Create an object for the intern
+                    teamMembers.push(intern); // Push information to teamMembers array
                     break;
                 default:
                     buildTeam = false;
@@ -122,8 +124,9 @@ const addTeamMember = () => {
             }
         }
 
+        // Generate the HTML displaying software engineering team profiles
         const outputTeam = render(teamMembers);
-        fs.writeFileSync(outputPath, outputTeam);
+        fs.writeFileSync(outputPath, outputTeam); 
 
     } catch (error) {
         console.error(error);
