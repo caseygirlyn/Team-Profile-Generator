@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 ## Description
-The Team Profile Generator is a command-line application that allows users to input information about team members and generates an HTML file displaying their profiles. It prompts the user to enter details such as name, ID, email, and role for each team member, and generates a nicely formatted HTML page with the team's profile information.
+The Team Profile Generator is a command-line application that allows users to input information about software engineering team members and generates an HTML file displaying their profiles. It prompts the user to enter details and generates a nicely formatted HTML page with the team's profile information.
 
 ## Table of Contents
 - [Features](#features)
@@ -20,7 +20,7 @@ The Team Profile Generator is a command-line application that allows users to in
     - **Engineer**: Name, Employee ID, Email Address and Github Username
     - **Intern**: Name, Employee ID, Email Address and School
 
-- Generates an HTML file displaying team profiles.
+- When a user decides to finish building their team, they exit the application and the HTML is generated displaying software engineering team profiles. 
 
 
 ## Installation
